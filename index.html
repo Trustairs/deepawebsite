@@ -419,7 +419,8 @@ hr.rule{border:none;border-top:1px solid var(--border)}
 /* ── GALLERY ── */
 .gal-grid{columns:3;column-gap:1rem;margin-top:2.5rem}
 .gal-item{break-inside:avoid;margin-bottom:1rem;position:relative;overflow:hidden;border-radius:10px;cursor:pointer}
-.gal-item .gal-svg,.gal-item img{display:block;width:100%}
+.gal-item .gal-svg{display:block;width:100%}
+.gal-item img{display:block;width:100%;height:100%;object-fit:cover}
 .gal-over{position:absolute;inset:0;background:rgba(8,30,52,0.65);display:flex;align-items:flex-end;padding:1rem;opacity:0;transition:opacity var(--t)}
 .gal-item:hover .gal-over{opacity:1}
 .gal-lbl{font-family:var(--sans);font-size:0.75rem;color:white;letter-spacing:0.04em}
@@ -1081,32 +1082,35 @@ footer{background:var(--navy);padding:3.5rem 5vw 2rem;border-top:4px solid var(-
       <p class="lead">Speaking engagements, events, awards, and connections across global governance forums.</p>
     </div>
     <div class="gal-grid fu">
-      <div class="gal-item" style="aspect-ratio:3/4;background:linear-gradient(160deg,#081E34,#0099BB)">
-        <svg class="gal-svg" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"><path d="M0 160 Q75 140 150 160 Q225 180 300 160"/><path d="M0 200 Q75 180 150 200 Q225 220 300 200"/><path d="M0 240 Q75 220 150 240 Q225 260 300 240"/><path d="M0 280 Q75 260 150 280 Q225 300 300 280"/><path d="M0 320 Q75 300 150 320 Q225 340 300 320"/></g><rect x="80" y="60" width="140" height="110" rx="3" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.18)" stroke-width="1"/><text x="150" y="110" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="rgba(255,255,255,0.35)" font-style="italic">Your photo</text><text x="150" y="128" text-anchor="middle" font-family="Arial" font-size="9" fill="rgba(255,255,255,0.22)" letter-spacing="1">speaking engagement</text></svg>
-        <div class="gal-over"><span class="gal-lbl">Add photo — speaking engagement</span></div>
+      <div class="gal-item" style="aspect-ratio:3/4">
+        <img src="myimages/Deepa Formal.jpg" alt="Deepa Rao — Governance &amp; AI Expert" loading="lazy">
+        <div class="gal-over"><span class="gal-lbl">Deepa Rao — Governance &amp; AI Expert</span></div>
       </div>
-      <div class="gal-item" style="background:#1A2E1A">
-        <svg class="gal-svg" viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="220" fill="#1C2E1A"/><g fill="none" stroke="rgba(100,160,80,0.3)" stroke-width="1"><line x1="50" y1="220" x2="50" y2="100"/><path d="M30 130 L50 80 L70 130Z"/><path d="M25 155 L50 100 L75 155Z"/><line x1="150" y1="220" x2="150" y2="80"/><path d="M125 120 L150 60 L175 120Z"/><path d="M118 148 L150 80 L182 148Z"/><line x1="250" y1="220" x2="250" y2="95"/><path d="M225 130 L250 70 L275 130Z"/></g><text x="150" y="48" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="rgba(255,255,255,0.3)" font-style="italic">Panel Discussion</text></svg>
-        <div class="gal-over"><span class="gal-lbl">Add photo — panel discussion</span></div>
+      <div class="gal-item">
+        <img src="myimages/1718182828074.jpg" alt="Speaking Engagement" loading="lazy">
+        <div class="gal-over"><span class="gal-lbl">Speaking Engagement</span></div>
       </div>
-      <div class="gal-item" style="background:#2A1F14">
-        <svg class="gal-svg" viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="220" fill="#2A1F14"/><g fill="none" stroke="rgba(201,160,90,0.35)" stroke-width="1"><circle cx="150" cy="105" r="75"/><circle cx="150" cy="105" r="52"/><line x1="150" y1="30" x2="150" y2="180"/><line x1="75" y1="105" x2="225" y2="105"/><line x1="97" y1="52" x2="203" y2="158"/><line x1="203" y1="52" x2="97" y2="158"/></g><polygon points="150,72 159,97 186,97 165,113 173,139 150,123 127,139 135,113 114,97 141,97" fill="none" stroke="rgba(201,160,90,0.55)" stroke-width="1.5"/><text x="150" y="195" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="rgba(255,255,255,0.3)" font-style="italic">Award Ceremony</text></svg>
-        <div class="gal-over"><span class="gal-lbl">Add photo — award ceremony</span></div>
+      <div class="gal-item">
+        <img src="myimages/1727961231064.jpg" alt="Panel Discussion" loading="lazy">
+        <div class="gal-over"><span class="gal-lbl">Panel Discussion</span></div>
       </div>
-      <div class="gal-item" style="aspect-ratio:3/4;background:linear-gradient(160deg,#0E3A5A,#00C4D4)">
-        <svg class="gal-svg" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"><rect x="20" y="20" width="260" height="360" rx="2"/><line x1="0" y1="0" x2="300" y2="400"/><line x1="300" y1="0" x2="0" y2="400"/></g><circle cx="150" cy="200" r="50" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/><text x="150" y="197" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="rgba(255,255,255,0.5)">Keynote</text><text x="150" y="214" text-anchor="middle" font-family="Arial" font-size="8" fill="rgba(255,255,255,0.3)" letter-spacing="2">CONFERENCE</text></svg>
-        <div class="gal-over"><span class="gal-lbl">Add photo — conference keynote</span></div>
+      <div class="gal-item" style="aspect-ratio:3/4">
+        <img src="myimages/1746735837447.jpg" alt="Conference Keynote" loading="lazy">
+        <div class="gal-over"><span class="gal-lbl">Conference Keynote</span></div>
       </div>
-      <div class="gal-item" style="background:#F2EEE8">
-        <svg class="gal-svg" viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="220" fill="#F2EEE8"/><g fill="none" stroke="#A89070" stroke-width="1.2" opacity="0.6"><line x1="150" y1="220" x2="150" y2="120"/><path d="M150 190 Q110 160 80 140 Q100 128 130 148 Q142 158 150 190Z"/><path d="M150 190 Q190 160 220 140 Q200 128 170 148 Q158 158 150 190Z"/><path d="M150 155 Q120 130 100 110 Q118 98 140 118 Q147 132 150 155Z"/><path d="M150 155 Q180 130 200 110 Q182 98 160 118 Q153 132 150 155Z"/><circle cx="150" cy="108" r="14"/><circle cx="150" cy="108" r="8"/></g><text x="150" y="58" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#8A7F78" font-style="italic">Board Workshop</text></svg>
-        <div class="gal-over"><span class="gal-lbl">Add photo — board workshop</span></div>
+      <div class="gal-item">
+        <img src="myimages/1746735839120.jpg" alt="Award Ceremony" loading="lazy">
+        <div class="gal-over"><span class="gal-lbl">Award Ceremony</span></div>
       </div>
-      <div class="gal-item" style="background:#1A1F2E">
-        <svg class="gal-svg" viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="220" fill="#1A1F2E"/><polygon points="0,220 80,80 160,140 220,55 300,110 300,220" fill="#0B3D5E"/><polygon points="220,55 200,95 240,95" fill="rgba(255,255,255,0.1)"/><g fill="rgba(255,255,255,0.4)"><circle cx="40" cy="28" r="1"/><circle cx="100" cy="18" r="1.2"/><circle cx="165" cy="32" r="1"/><circle cx="255" cy="22" r="1.2"/></g><text x="150" y="193" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="rgba(255,255,255,0.3)" font-style="italic">Workshop Session</text></svg>
-        <div class="gal-over"><span class="gal-lbl">Add photo — workshop session</span></div>
+      <div class="gal-item">
+        <img src="myimages/1747045242628.jpg" alt="Board Workshop" loading="lazy">
+        <div class="gal-over"><span class="gal-lbl">Board Workshop</span></div>
+      </div>
+      <div class="gal-item">
+        <img src="myimages/1747045243094.jpg" alt="Workshop Session" loading="lazy">
+        <div class="gal-over"><span class="gal-lbl">Workshop Session</span></div>
       </div>
     </div>
-    <p class="fu" style="margin-top:2rem;font-family:var(--sans);font-size:0.82rem;color:var(--muted);text-align:center">📸 Send your photos to add them here — each placeholder shows the recommended slot &amp; caption.</p>
   </div>
 </section>
 
