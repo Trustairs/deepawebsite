@@ -13,11 +13,11 @@
     {"name": "London.jpeg", "path": "myimages/London.jpeg"}
   ],
   "videos": [
-    {"name": "myvideo1.mp4", "path": "myvideos/myvideo1.mp4"},
-    {"name": "Netherlands.mp4", "path": "myvideos/Netherlands.mp4"},
-    {"name": "netherlands0.mp4", "path": "myvideos/netherlands0.mp4"},
-    {"name": "Netherlands2.mp4", "path": "myvideos/Netherlands2.mp4"},
-    {"name": "Netherlands3.mp4", "path": "myvideos/Netherlands3.mp4"},
-    {"name": "Netherlands4.mp4", "path": "myvideos/Netherlands4.mp4"}
+    {"name": "myvideo1.mp4", "path": "myvideos/myvideo1.mp4", "description": "Keynote presentation on governance and AI oversight"},
+    {"name": "Netherlands.mp4", "path": "myvideos/Netherlands.mp4", "description": "International conference on sustainable governance"},
+    {"name": "netherlands0.mp4", "path": "myvideos/netherlands0.mp4", "description": "Panel discussion on corporate accountability"},
+    {"name": "Netherlands2.mp4", "path": "myvideos/Netherlands2.mp4", "description": "Expert insights on ESG frameworks and implementation"},
+    {"name": "Netherlands3.mp4", "path": "myvideos/Netherlands3.mp4", "description": "Board-level perspectives on responsible AI"},
+    {"name": "Netherlands4.mp4", "path": "myvideos/Netherlands4.mp4", "description": "Roundtable discussion on governance trends"}
   ]
 }
