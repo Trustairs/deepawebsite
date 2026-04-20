@@ -425,6 +425,16 @@ hr.rule{border:none;border-top:1px solid var(--border)}
 .gal-item:hover .gal-over{opacity:1}
 .gal-lbl{font-family:var(--sans);font-size:0.75rem;color:white;letter-spacing:0.04em}
 
+/* ── VIDEO GALLERY ── */
+.videos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;margin-top:2.5rem}
+.video-item{position:relative;overflow:hidden;border-radius:10px;background:var(--border);aspect-ratio:16/9}
+.video-item video{width:100%;height:100%;object-fit:cover}
+.video-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(8,30,52,0.5);opacity:0;transition:opacity var(--t);cursor:pointer}
+.video-item:hover .video-play{opacity:1}
+.video-play-icon{width:60px;height:60px;background:rgba(0,196,212,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.video-play-icon::after{content:'▶';color:white;font-size:24px;margin-left:3px}
+.video-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(8,30,52,0.9),transparent);padding:1rem;color:white;font-family:var(--sans);font-size:0.85rem;font-weight:500}
+
 /* ── CONNECT ── */
 .connect-section{background:var(--off);padding:6.5rem 5vw}
 .connect-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;margin-top:3rem}
@@ -504,6 +514,7 @@ footer{background:var(--navy);padding:3.5rem 5vw 2rem;border-top:4px solid var(-
   .fw-cta-strip .btn{width:100%;justify-content:center}
 
   .gal-grid{columns:2;column-gap:0.75rem}
+  .videos-grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
 
   .frow{grid-template-columns:1fr}
   .nl-issues{grid-template-columns:1fr 1fr}
@@ -616,6 +627,7 @@ footer{background:var(--navy);padding:3.5rem 5vw 2rem;border-top:4px solid var(-
   /* Gallery */
   .gal-grid{columns:1;column-gap:0}
   .gal-item{margin-bottom:0.75rem}
+  .videos-grid{grid-template-columns:1fr}
 
   /* Connect */
   .connect-section{padding:3rem 4vw}
@@ -1081,35 +1093,22 @@ footer{background:var(--navy);padding:3.5rem 5vw 2rem;border-top:4px solid var(-
       <h2 class="disp">Moments &amp; <em>milestones</em></h2>
       <p class="lead">Speaking engagements, events, awards, and connections across global governance forums.</p>
     </div>
-    <div class="gal-grid fu">
-      <div class="gal-item" style="aspect-ratio:3/4">
-        <img src="myimages/Deepa Formal.jpg" alt="Deepa Rao — Governance &amp; AI Expert" loading="lazy">
-        <div class="gal-over"><span class="gal-lbl">Deepa Rao — Governance &amp; AI Expert</span></div>
-      </div>
-      <div class="gal-item">
-        <img src="myimages/1718182828074.jpg" alt="Speaking Engagement" loading="lazy">
-        <div class="gal-over"><span class="gal-lbl">Speaking Engagement</span></div>
-      </div>
-      <div class="gal-item">
-        <img src="myimages/1727961231064.jpg" alt="Panel Discussion" loading="lazy">
-        <div class="gal-over"><span class="gal-lbl">Panel Discussion</span></div>
-      </div>
-      <div class="gal-item" style="aspect-ratio:3/4">
-        <img src="myimages/1746735837447.jpg" alt="Conference Keynote" loading="lazy">
-        <div class="gal-over"><span class="gal-lbl">Conference Keynote</span></div>
-      </div>
-      <div class="gal-item">
-        <img src="myimages/1746735839120.jpg" alt="Award Ceremony" loading="lazy">
-        <div class="gal-over"><span class="gal-lbl">Award Ceremony</span></div>
-      </div>
-      <div class="gal-item">
-        <img src="myimages/1747045242628.jpg" alt="Board Workshop" loading="lazy">
-        <div class="gal-over"><span class="gal-lbl">Board Workshop</span></div>
-      </div>
-      <div class="gal-item">
-        <img src="myimages/1747045243094.jpg" alt="Workshop Session" loading="lazy">
-        <div class="gal-over"><span class="gal-lbl">Workshop Session</span></div>
-      </div>
+    <div class="gal-grid fu" id="images-gallery">
+      <!-- Images loaded dynamically -->
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO GALLERY -->
+<section id="videos" style="background:var(--white);padding:6.5rem 5vw">
+  <div class="wrap">
+    <div class="fu" style="margin-bottom:1rem">
+      <p class="sk">Videos</p>
+      <h2 class="disp">Insights &amp; <em>interviews</em></h2>
+      <p class="lead">Keynotes, panel discussions, and thought leadership on governance and AI oversight.</p>
+    </div>
+    <div class="videos-grid fu" id="videos-gallery">
+      <!-- Videos loaded dynamically -->
     </div>
   </div>
 </section>
@@ -1248,6 +1247,64 @@ document.addEventListener('DOMContentLoaded', function() {
     // Disable non-essential cookies here if needed
   });
 });
+
+// Load Gallery Images and Videos Dynamically
+async function loadGallery() {
+  try {
+    // Load images
+    const imagesResponse = await fetch('get-media.php?type=images');
+    const images = await imagesResponse.json();
+    const imagesContainer = document.getElementById('images-gallery');
+    
+    imagesContainer.innerHTML = '';
+    images.forEach(img => {
+      const item = document.createElement('div');
+      item.className = 'gal-item';
+      item.innerHTML = `
+        <img src="${img.path}" alt="${img.name}" loading="lazy">
+        <div class="gal-over"><span class="gal-lbl">${img.name.replace(/\.[^.]+$/, '').replace(/\d+/g, '').trim()}</span></div>
+      `;
+      imagesContainer.appendChild(item);
+    });
+
+    // Load videos
+    const videosResponse = await fetch('get-media.php?type=videos');
+    const videos = await videosResponse.json();
+    const videosContainer = document.getElementById('videos-gallery');
+    
+    videosContainer.innerHTML = '';
+    videos.forEach(vid => {
+      const item = document.createElement('div');
+      item.className = 'video-item';
+      item.innerHTML = `
+        <video>
+          <source src="${vid.path}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="video-play"><div class="video-play-icon"></div></div>
+        <div class="video-label">${vid.name.replace(/\.[^.]+$/, '').replace(/\d+/g, '').trim()}</div>
+      `;
+      
+      // Add click handler to play video
+      item.addEventListener('click', function() {
+        const video = item.querySelector('video');
+        if (video.paused) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      });
+      
+      videosContainer.appendChild(item);
+    });
+  } catch (error) {
+    console.error('Error loading gallery:', error);
+  }
+}
+
+// Load gallery when page loads
+document.addEventListener('DOMContentLoaded', loadGallery);
+
 </script>
 </body>
 </html>
