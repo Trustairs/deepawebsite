@@ -470,32 +470,170 @@ footer{background:var(--navy);padding:3.5rem 5vw 2rem;border-top:4px solid var(-
 /* ── RESPONSIVE ── */
 @media(max-width:1050px){
   .hero{grid-template-columns:1fr}
-  .hero-r{min-height:60vw;height:60vw}
+  .hero-r{min-height:55vw;height:55vw}
   .about-grid{grid-template-columns:1fr;gap:2.5rem}
   .photo-col{position:static}
-  .photo-frame{max-width:260px}
+  .photo-frame{max-width:280px;margin:0 auto}
   .framework-layout{grid-template-columns:1fr;gap:2.5rem}
   .fw-img-wrap{position:static}
   .unified-grid{grid-template-columns:1fr;gap:2.5rem}
   .fw-grid{grid-template-columns:1fr}
   .connect-grid{grid-template-columns:1fr;gap:2.5rem}
 }
+
+/* ── TABLET ── */
 @media(max-width:768px){
   .nav-links{display:none}
   .burger{display:flex}
-  .gal-grid{columns:2}
+
+  section{padding:3.5rem 4vw}
+  .hero-l{padding:2.8rem 4vw 2rem}
+  .hero-r{min-height:45vw;height:45vw}
+
+  h2.disp{font-size:clamp(1.7rem,5vw,2.4rem)}
+
+  .about-grid{gap:2rem}
+  .photo-frame{max-width:220px}
+  .stat-row{grid-template-columns:repeat(3,1fr)}
+
+  .fw-grid{gap:1rem}
+  .fw-card{padding:1.8rem}
+
+  .fw-cta-strip{flex-direction:column;text-align:center;border-radius:16px;padding:1.6rem}
+  .fw-cta-strip .btn{width:100%;justify-content:center}
+
+  .gal-grid{columns:2;column-gap:0.75rem}
+
   .frow{grid-template-columns:1fr}
-  .foot-top{flex-direction:column}
-  .foot-bot{flex-direction:column;text-align:center}
+  .nl-issues{grid-template-columns:1fr 1fr}
+
+  .foot-top{flex-direction:column;align-items:flex-start}
+  .foot-bot{flex-direction:column;text-align:center;gap:0.8rem}
   .soc-row{justify-content:center}
-  .nl-issues{grid-template-columns:1fr}
+
+  .ep-card{padding:1.1rem 1.2rem;gap:1rem}
+  .ep-icon{width:40px;height:40px}
 }
+
+/* ── PHONE ── */
 @media(max-width:500px){
-  section{padding:4rem 5vw}
-  .hero-l{padding:3.5rem 5vw}
-  .hero-btns{flex-direction:column}
-  .btn{width:100%;justify-content:center}
-  .gal-grid{columns:1}
+  nav{padding:0 4vw}
+
+  section{padding:3rem 4vw}
+
+  /* Hero */
+  .hero{padding-top:68px}
+  .hero-l{padding:2.5rem 4vw 2rem}
+  .hero-l h1{font-size:clamp(2rem,8.5vw,2.8rem);line-height:1.1}
+  .hero-deck{font-size:0.9rem;line-height:1.75}
+  .hero-pills{gap:0.4rem}
+  .pill{font-size:0.6rem;padding:0.28rem 0.75rem}
+  .hero-btns{flex-direction:column;gap:0.75rem}
+  .btn{width:100%;justify-content:center;padding:0.85rem 1.5rem;font-size:0.75rem}
+  .hero-r{min-height:52vw;height:52vw}
+  .hero-badge{bottom:1.2rem;left:1.2rem;right:1.2rem;padding:0.9rem 1rem}
+  .hero-badge p{font-size:0.85rem}
+
+  /* Section headings */
+  h2.disp{font-size:clamp(1.6rem,6.5vw,2.2rem);margin-bottom:0.8rem}
+  .lead{font-size:0.88rem}
+  .sk{font-size:0.6rem;margin-bottom:0.7rem}
+
+  /* About */
+  .about-grid{gap:1.8rem}
+  .photo-frame{max-width:100%;border-radius:10px}
+  .stat-row{grid-template-columns:repeat(3,1fr)}
+  .stat{padding:0.75rem 0.5rem}
+  .stat-n{font-size:1.3rem}
+  .stat-l{font-size:0.55rem}
+  .text-col p{font-size:0.9rem}
+  .pullq{font-size:1.15rem;padding:0.85rem 1.1rem;margin:1.5rem 0}
+  .about-btns{flex-direction:column;gap:0.6rem}
+  .about-btns .btn{width:100%;justify-content:center}
+
+  /* Frameworks dark band */
+  .fw-section{padding:3rem 4vw}
+  .fw-grid{grid-template-columns:1fr;gap:1rem;margin-top:2rem}
+  .fw-card{padding:1.5rem}
+  .fw-letter{font-size:2.2rem}
+  .fw-card h3{font-size:1.05rem}
+  .fw-card p{font-size:0.8rem}
+  .fw-cta-strip{border-radius:14px;padding:1.4rem 1.2rem;gap:1rem}
+  .fw-cta-strip p{font-size:0.78rem}
+
+  /* Pillar list */
+  .pillar{grid-template-columns:36px 1fr;gap:0.75rem;padding:1.1rem 0}
+  .p-letter{font-size:1.8rem}
+  .p-body h4{font-size:0.74rem}
+  .p-body p{font-size:0.8rem}
+  .fw-img-wrap{padding:1.2rem}
+
+  /* Teal band */
+  .teal-band{padding:3rem 4vw}
+  .unified-grid{gap:2rem;margin-top:2rem}
+  .ben{padding:1.1rem}
+  .ben h4{font-size:0.8rem}
+  .ben p{font-size:0.78rem}
+
+  /* Newsletter */
+  .newsletter-section{padding:3rem 4vw}
+  .newsletter-section::before{font-size:10rem;top:-1rem}
+  .newsletter-section h2{font-size:clamp(1.6rem,7vw,2.2rem);margin-bottom:0.6rem}
+  .newsletter-section p{font-size:0.88rem;margin-bottom:1.5rem}
+  .nl-features{flex-direction:column;align-items:center;gap:0.7rem;margin-bottom:1.8rem}
+  .nl-feat{font-size:0.78rem}
+  .nl-btn{padding:0.9rem 2rem;font-size:0.75rem}
+  .nl-issues{grid-template-columns:1fr;gap:0.75rem;margin-top:2rem}
+  .nl-issue{padding:1rem 1.1rem}
+  .nl-issue h4{font-size:0.92rem}
+  .nl-issue p{font-size:0.75rem}
+
+  /* Quote */
+  .q-break{padding:3rem 4vw}
+  .q-break blockquote{font-size:clamp(1.2rem,5.5vw,1.6rem)}
+  .q-break blockquote::before{font-size:3.5rem;margin-bottom:1rem}
+
+  /* Courses */
+  .courses-grid{grid-template-columns:1fr;gap:1rem;margin-top:2rem}
+  .course-cover{height:160px}
+  .course-body{padding:1.2rem}
+  .course-body h3{font-size:1.05rem}
+  .course-body p{font-size:0.8rem}
+
+  /* Events & Podcasts */
+  .ep-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .ep-tab{padding:0.7rem 1rem;font-size:0.68rem;white-space:nowrap}
+  .ep-card{padding:1rem 1rem;gap:0.75rem;flex-wrap:wrap}
+  .ep-icon{width:36px;height:36px;border-radius:6px}
+  .ep-icon svg{width:16px;height:16px}
+  .ep-card h4{font-size:0.95rem}
+  .ep-card p{font-size:0.78rem}
+  .ep-meta{font-size:0.62rem}
+  .ep-badge{font-size:0.58rem;padding:0.22rem 0.6rem}
+  .ep-add{padding:0.9rem 1rem;font-size:0.78rem}
+
+  /* Gallery */
+  .gal-grid{columns:1;column-gap:0}
+  .gal-item{margin-bottom:0.75rem}
+
+  /* Connect */
+  .connect-section{padding:3rem 4vw}
+  .connect-grid{gap:2rem;margin-top:1.8rem}
+  .conn-info h3{font-size:1.25rem}
+  .conn-info p{font-size:0.85rem}
+  .c-link{padding:0.85rem 1rem;font-size:0.83rem}
+  .form-wrap{padding:1.5rem 1.2rem;border-radius:10px}
+  .form-wrap h3{font-size:1.2rem;margin-bottom:1.1rem}
+  .fg input,.fg textarea,.fg select{font-size:0.85rem;padding:0.65rem 0.85rem}
+  .form-btn{padding:0.85rem;font-size:0.75rem}
+
+  /* Footer */
+  footer{padding:2.5rem 4vw 1.5rem}
+  .foot-top{gap:1.2rem;padding-bottom:1.5rem;margin-bottom:1rem}
+  .foot-nav{gap:1rem 1.5rem}
+  .foot-nav a{font-size:0.65rem}
+  .foot-copy{font-size:0.62rem}
+  .soc-row{justify-content:center}
 }
 </style>
 </head>
