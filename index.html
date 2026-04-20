@@ -453,6 +453,17 @@ footer{background:var(--navy);padding:3.5rem 5vw 2rem;border-top:4px solid var(-
 </head>
 <body>
 
+<!-- COOKIE CONSENT BANNER -->
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:var(--navy);color:var(--white);padding:1rem 5vw;z-index:1000;border-top:2px solid var(--teal);display:none;">
+  <div style="max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
+    <p style="font-family:var(--sans);font-size:0.85rem;margin:0;flex:1;">This website uses cookies to enhance your experience. By continuing to use this site, you agree to our use of cookies. <a href="privacy.html" style="color:var(--cyan);text-decoration:underline;">Learn more</a></p>
+    <div style="display:flex;gap:1rem;">
+      <button id="accept-cookies" style="background:linear-gradient(135deg,var(--teal),var(--cyan));color:var(--white);border:none;padding:0.5rem 1.5rem;border-radius:99px;font-family:var(--sans);font-size:0.8rem;font-weight:500;cursor:pointer;">Accept</button>
+      <button id="decline-cookies" style="background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.3);padding:0.5rem 1.5rem;border-radius:99px;font-family:var(--sans);font-size:0.8rem;font-weight:500;cursor:pointer;">Decline</button>
+    </div>
+  </div>
+</div>
+
 <!-- NAV -->
 <nav>
   <a href="#top" class="nav-logo">Deepa <span>Rao</span></a>
@@ -978,6 +989,7 @@ footer{background:var(--navy);padding:3.5rem 5vw 2rem;border-top:4px solid var(-
       <a href="#about">About</a><a href="#trust">TRUST</a><a href="#airs">AIRS</a>
       <a href="#newsletter">Newsletter</a><a href="#courses">Courses</a>
       <a href="#events">Events</a><a href="#connect">Connect</a>
+      <a href="privacy.html">Privacy Policy</a>
     </nav>
   </div>
   <div class="foot-bot">
@@ -1018,6 +1030,30 @@ const io=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target)}});
 },{threshold:0.07});
 document.querySelectorAll('.fu').forEach(el=>io.observe(el));
+
+// Cookie Consent Banner
+document.addEventListener('DOMContentLoaded', function() {
+  const banner = document.getElementById('cookie-banner');
+  const acceptBtn = document.getElementById('accept-cookies');
+  const declineBtn = document.getElementById('decline-cookies');
+
+  // Check if user has already made a choice
+  if (!localStorage.getItem('cookie-consent')) {
+    banner.style.display = 'block';
+  }
+
+  acceptBtn.addEventListener('click', function() {
+    localStorage.setItem('cookie-consent', 'accepted');
+    banner.style.display = 'none';
+    // Enable analytics cookies here if needed
+  });
+
+  declineBtn.addEventListener('click', function() {
+    localStorage.setItem('cookie-consent', 'declined');
+    banner.style.display = 'none';
+    // Disable non-essential cookies here if needed
+  });
+});
 </script>
 </body>
 </html>
