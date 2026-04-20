@@ -1251,13 +1251,14 @@ document.addEventListener('DOMContentLoaded', function() {
 // Load Gallery Images and Videos Dynamically
 async function loadGallery() {
   try {
-    // Load images
-    const imagesResponse = await fetch('get-media.php?type=images');
-    const images = await imagesResponse.json();
-    const imagesContainer = document.getElementById('images-gallery');
+    // Load media list from JSON
+    const response = await fetch('media.json');
+    const mediaData = await response.json();
     
+    // Load images
+    const imagesContainer = document.getElementById('images-gallery');
     imagesContainer.innerHTML = '';
-    images.forEach(img => {
+    mediaData.images.forEach(img => {
       const item = document.createElement('div');
       item.className = 'gal-item';
       item.innerHTML = `
@@ -1268,12 +1269,9 @@ async function loadGallery() {
     });
 
     // Load videos
-    const videosResponse = await fetch('get-media.php?type=videos');
-    const videos = await videosResponse.json();
     const videosContainer = document.getElementById('videos-gallery');
-    
     videosContainer.innerHTML = '';
-    videos.forEach(vid => {
+    mediaData.videos.forEach(vid => {
       const item = document.createElement('div');
       item.className = 'video-item';
       item.innerHTML = `

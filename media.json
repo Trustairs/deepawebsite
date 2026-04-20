@@ -1,0 +1,23 @@
+{
+  "images": [
+    {"name": "Deepa Formal.jpg", "path": "myimages/Deepa Formal.jpg"},
+    {"name": "1718182828074.jpg", "path": "myimages/1718182828074.jpg"},
+    {"name": "1727961231064.jpg", "path": "myimages/1727961231064.jpg"},
+    {"name": "1746735837447.jpg", "path": "myimages/1746735837447.jpg"},
+    {"name": "1746735839120.jpg", "path": "myimages/1746735839120.jpg"},
+    {"name": "1747045242628.jpg", "path": "myimages/1747045242628.jpg"},
+    {"name": "1747045243094.jpg", "path": "myimages/1747045243094.jpg"},
+    {"name": "CIIA.jpeg", "path": "myimages/CIIA.jpeg"},
+    {"name": "ICAI.jpeg", "path": "myimages/ICAI.jpeg"},
+    {"name": "image1.jpeg", "path": "myimages/image1.jpeg"},
+    {"name": "London.jpeg", "path": "myimages/London.jpeg"}
+  ],
+  "videos": [
+    {"name": "myvideo1.mp4", "path": "myvideos/myvideo1.mp4"},
+    {"name": "Netherlands.mp4", "path": "myvideos/Netherlands.mp4"},
+    {"name": "netherlands0.mp4", "path": "myvideos/netherlands0.mp4"},
+    {"name": "Netherlands2.mp4", "path": "myvideos/Netherlands2.mp4"},
+    {"name": "Netherlands3.mp4", "path": "myvideos/Netherlands3.mp4"},
+    {"name": "Netherlands4.mp4", "path": "myvideos/Netherlands4.mp4"}
+  ]
+}
