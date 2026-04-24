@@ -103,6 +103,27 @@
     .nav-btn:hover { color:var(--navy); }
     .nav-btn:hover::after { transform:scaleX(1); }
 
+    .nav-toggle {
+      display:none; align-items:center; justify-content:center;
+      width:44px; height:44px; border:1px solid var(--bdim);
+      background:transparent; color:var(--gold); border-radius:14px;
+      cursor:pointer; transition:transform .3s ease, border-color .3s ease;
+    }
+    .nav-toggle span {
+      display:block; width:20px; height:2px; background:currentColor;
+      position:relative; transition:transform .3s ease;
+    }
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      content:''; position:absolute; left:0; width:100%; height:100%;
+      background:currentColor; transition:transform .3s ease, opacity .3s ease;
+    }
+    .nav-toggle span::before { top:-6px; }
+    .nav-toggle span::after { top:6px; }
+    .nav-toggle.open span { transform:rotate(45deg); }
+    .nav-toggle.open span::before { transform:rotate(90deg); top:0; }
+    .nav-toggle.open span::after { opacity:0; }
+
     /* ── Shared Tokens ─────────────────────────────────────── */
     .label {
       font-size:10px; letter-spacing:.32em; text-transform:uppercase;
@@ -688,22 +709,102 @@
 
     /* ── Responsive ────────────────────────────────────────── */
     @media(max-width:1000px){
-      nav { padding:22px 28px; }
+      nav {
+        padding:22px 28px;
+        flex-wrap:wrap;
+        align-items:center;
+        gap:18px;
+      }
       nav.solid { padding:14px 28px; }
-      .nav-links,.nav-btn { display:none; }
+      .nav-links {
+        display:flex;
+        flex-wrap:wrap;
+        gap:16px;
+        justify-content:flex-start;
+        overflow-x:auto;
+        padding-bottom:8px;
+      }
+      .nav-links::-webkit-scrollbar { display:none; }
+      .nav-links a { white-space:nowrap; }
+      .nav-btn { display:inline-flex; }
       #hero { grid-template-columns:1fr; padding:100px 28px 60px; }
       .hero-visual { display:none; }
+      .hero-content { padding-top:0; }
+      .hero-name { font-size:clamp(48px,8vw,92px); margin:22px 0 16px; }
+      .hero-desc { max-width:100%; margin-bottom:40px; }
+      .hero-cta { flex-wrap:wrap; gap:16px; }
       #about { grid-template-columns:1fr; padding:80px 28px; gap:48px; }
       .section-wrap { padding:80px 28px; }
+      .about-img img { height:auto; }
+      .about-img::before { width:140px; height:140px; top:-14px; right:-14px; }
+      .about-creds { gap:12px; }
       .exp-grid,.fw-grid,.vid-grid,.pw-grid,.courses-grid,.imp-grid,.fw-upcoming { grid-template-columns:1fr; }
       .spk-grid { grid-template-columns:1fr; grid-template-rows:auto; }
       .spk-card.span2 { grid-column:span 1; }
+      .spk-card { min-height:320px; }
       .imp-grid { grid-template-columns:repeat(2,1fr); }
       .nl-grid { grid-template-columns:1fr; gap:48px; }
+      .fw-upcoming { grid-template-columns:1fr; }
+      .course-meta { flex-direction:column; gap:12px; }
       .sep { margin:0 28px; }
       footer { flex-direction:column; gap:20px; text-align:center; padding:36px 28px; }
       .footer-links { justify-content:center; }
       .speaking-top,.courses-header { flex-direction:column; gap:24px; align-items:flex-start; }
+      .contact-btns { flex-direction:column; align-items:center; }
+    }
+    @media(max-width:720px){
+      nav { padding:18px 20px; align-items:flex-start; gap:16px; }
+      nav.solid { padding:12px 20px; }
+      .nav-logo { font-size:15px; }
+      .nav-toggle { display:flex; }
+      .nav-links {
+        gap:12px;
+        width:100%;
+        flex-direction:column;
+        max-height:0;
+        overflow:hidden;
+        opacity:0;
+        transition:max-height .35s ease, opacity .35s ease;
+      }
+      .nav-links.open {
+        max-height:500px;
+        opacity:1;
+      }
+      .nav-links a { font-size:10px; }
+      .nav-btn { padding:10px 20px; font-size:10px; width:100%; justify-content:center; }
+      #hero { padding:80px 20px 48px; }
+      .hero-eyebrow { gap:12px; }
+      .hero-name { font-size:clamp(42px,10vw,80px); }
+      .hero-role { margin-bottom:32px; }
+      .hero-desc { font-size:14px; }
+      .hero-cta { width:100%; gap:12px; }
+      #about { padding:64px 20px; gap:36px; }
+      .section-wrap { padding:64px 20px; }
+      .about-img::before { display:none; }
+      .mini-stats { grid-template-columns:1fr; }
+      .fw-placeholder, .fw-card, .course-card, .pw-card, .vid-card, .spk-card { min-height:auto; }
+      .nl-logo-wrap { flex-direction:column; align-items:flex-start; }
+      .nl-freq { flex-direction:column; align-items:flex-start; gap:10px; }
+      .contact-btns { width:100%; }
+      .c-btn { width:100%; justify-content:center; }
+      footer { padding:28px 20px; }
+    }
+    @media(max-width:560px){
+      body { font-size:14px; }
+      .section-wrap { padding:52px 18px; }
+      .nav-links { justify-content:flex-start; }
+      .hero-name { font-size:clamp(34px,12vw,62px); }
+      .hero-desc { font-size:13.5px; line-height:1.9; }
+      .label, .nav-links a, .btn-gold, .btn-outline, .btn-ghost, .course-meta span, .nl-art-date, .nl-art-title, .vid-duration, .vid-desc, .pw-ep, .pw-link, .footer-links a { font-size:10px; }
+      .hero-cta { align-items:flex-start; }
+      .about-img img { max-height:none; }
+      .spk-overlay { padding:24px 20px 18px; }
+      .vid-body { padding:18px 20px 22px; }
+      .pw-card-top { padding:24px 20px 20px; }
+      .fw-card { padding:32px 24px; }
+      .course-top { padding:32px 24px 24px; }
+      .contact-h { font-size:clamp(38px,8vw,60px); }
+      footer { gap:16px; }
     }
   </style>
 </head>
@@ -719,6 +820,9 @@
 <!-- ══════════════════════════════════════════════════════ -->
 <nav id="nav">
   <a href="#" class="nav-logo">DR</a>
+  <button id="navToggle" class="nav-toggle" type="button" aria-label="Toggle navigation">
+    <span></span>
+  </button>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#expertise">Expertise</a></li>
@@ -757,7 +861,7 @@
 
   <div class="hero-visual">
     <div class="hero-frame">
-      <img src="myimages/Potrait_1.png" alt="Deepa Rao">
+      <img src="myimages/Potrait1.png" alt="Deepa Rao">
       <div class="hero-card">
         <div class="hero-card-tag">Global Stage</div>
         <div class="hero-card-val">20<span style="font-size:22px;color:var(--gold-lt)">+</span></div>
@@ -801,7 +905,7 @@
 <!-- ══════════════════════════════════════════════════════ -->
 <section id="about">
   <div class="about-img rv">
-    <img src="myimages/ChatGPT%20Image%20Apr%2023%2C%202026%2C%2009_29_48%20PM.png" alt="Deepa Rao">
+    <img src="myimages/Potrait4.png" alt="Deepa Rao">
   </div>
   <div>
     <div class="label rv">About Deepa</div>
@@ -1661,7 +1765,21 @@
 
   /* ── Navbar ──────────────────────────────────── */
   const nav=document.getElementById('nav');
+  const navToggle=document.getElementById('navToggle');
+  const navLinks=document.querySelector('.nav-links');
   window.addEventListener('scroll',()=>nav.classList.toggle('solid',window.scrollY>80),{passive:true});
+  if(navToggle && navLinks){
+    navToggle.addEventListener('click',()=>{
+      navLinks.classList.toggle('open');
+      navToggle.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(link=>{
+      link.addEventListener('click',()=>{
+        navLinks.classList.remove('open');
+        navToggle.classList.remove('open');
+      });
+    });
+  }
 
   /* ── Scroll Reveal ───────────────────────────── */
   const rvObs=new IntersectionObserver(entries=>{
