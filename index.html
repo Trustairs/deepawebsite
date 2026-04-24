@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Deepa Rao — Sustainability, Governance &amp; AI</title>focus
+  <title>Deepa Rao — Sustainability, Governance &amp; AI</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
@@ -1549,11 +1549,11 @@
       <div class="imp-lbl">Global Conferences</div>
     </div>
     <div class="imp-cell rv d2">
-      <span class="imp-num" data-count="50">0</span><span class="imp-sfx">+</span>
+      <span class="imp-num" data-count="10">0</span><span class="imp-sfx">+</span>
       <div class="imp-lbl">Enterprises Advised</div>
     </div>
     <div class="imp-cell rv d3">
-      <span class="imp-num" data-count="7">0</span><span class="imp-sfx">K+</span>
+      <span class="imp-num" data-count="7K">0</span><span class="imp-sfx">+</span>
       <div class="imp-lbl">Newsletter Followers</div>
     </div>
   </div>
@@ -1763,7 +1763,7 @@
         vidCard.innerHTML = `
           <div class="vid-thumb">
             <div class="vid-thumb-inner">
-              <img src="${video.thumbnail || ''}" alt="${video.name}">
+              <img src="${video.thumbnail || ''}" alt="${video.name}" draggable="false">
               <div class="vid-play"></div>
             </div>
             <div class="vid-tag">${tags[index % tags.length]}</div>
@@ -1777,8 +1777,8 @@
         vidCard.addEventListener('click', () => {
           vidPlayer.src = video.path;
           vidPlayer.load();
-          vidPlayer.play();
           vidModal.style.display = 'flex';
+          vidPlayer.play().catch(() => {});
         });
         vidGrid.appendChild(vidCard);
         rvObs.observe(vidCard);
