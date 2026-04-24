@@ -1,23 +1,36 @@
 {
   "images": [
-    {"name": "Deepa Formal.jpg", "path": "myimages/Deepa Formal.jpg"},
     {"name": "1718182828074.jpg", "path": "myimages/1718182828074.jpg"},
     {"name": "1727961231064.jpg", "path": "myimages/1727961231064.jpg"},
     {"name": "1746735837447.jpg", "path": "myimages/1746735837447.jpg"},
     {"name": "1746735839120.jpg", "path": "myimages/1746735839120.jpg"},
     {"name": "1747045242628.jpg", "path": "myimages/1747045242628.jpg"},
     {"name": "1747045243094.jpg", "path": "myimages/1747045243094.jpg"},
+    {"name": "Barcelona_3.jpg", "path": "myimages/Barcelona_3.jpg"},
+    {"name": "Barcelona_4.jpg", "path": "myimages/Barcelona_4.jpg"},
+    {"name": "Barcelona_Conference.jpg", "path": "myimages/Barcelona_Conference.jpg"},
+    {"name": "Barcelona_Conference_2.jpg", "path": "myimages/Barcelona_Conference_2.jpg"},
+    {"name": "ChatGPT Image Apr 23, 2026, 09_29_48 PM.png", "path": "myimages/ChatGPT Image Apr 23, 2026, 09_29_48 PM.png"},
+    {"name": "ChatGPT Image Apr 23, 2026, 09_30_32 PM.png", "path": "myimages/ChatGPT Image Apr 23, 2026, 09_30_32 PM.png"},
     {"name": "CIIA.jpeg", "path": "myimages/CIIA.jpeg"},
+    {"name": "Deepa Formal.jpg", "path": "myimages/Deepa Formal.jpg"},
+    {"name": "FintexConf.jpg", "path": "myimages/FintexConf.jpg"},
     {"name": "ICAI.jpeg", "path": "myimages/ICAI.jpeg"},
+    {"name": "IIA_London.jpg", "path": "myimages/IIA_London.jpg"},
     {"name": "image1.jpeg", "path": "myimages/image1.jpeg"},
-    {"name": "London.jpeg", "path": "myimages/London.jpeg"}
+    {"name": "London.jpeg", "path": "myimages/London.jpeg"},
+    {"name": "Office_!.png", "path": "myimages/Office_!.png"},
+    {"name": "Potrait1.png", "path": "myimages/Potrait1.png"},
+    {"name": "Potrait4.png", "path": "myimages/Potrait4.png"},
+    {"name": "Potrait_1.png", "path": "myimages/Potrait_1.png"},
+    {"name": "Potrait_2.png", "path": "myimages/Potrait_2.png"}
   ],
   "videos": [
-    {"name": "myvideo1.mp4", "path": "myvideos/myvideo1.mp4", "description": "Keynote presentation on governance and AI oversight"},
-    {"name": "Netherlands.mp4", "path": "myvideos/Netherlands.mp4", "description": "International conference on sustainable governance"},
-    {"name": "netherlands0.mp4", "path": "myvideos/netherlands0.mp4", "description": "Panel discussion on corporate accountability"},
-    {"name": "Netherlands2.mp4", "path": "myvideos/Netherlands2.mp4", "description": "Expert insights on ESG frameworks and implementation"},
-    {"name": "Netherlands3.mp4", "path": "myvideos/Netherlands3.mp4", "description": "Board-level perspectives on responsible AI"},
-    {"name": "Netherlands4.mp4", "path": "myvideos/Netherlands4.mp4", "description": "Roundtable discussion on governance trends"}
+    {"name": "myvideo1.mp4", "path": "myvideos/myvideo1.mp4", "thumbnail": "myimages/1747045242628.jpg", "description": "Keynote presentation on governance and AI oversight"},
+    {"name": "Netherlands.mp4", "path": "myvideos/Netherlands.mp4", "thumbnail": "myimages/1746735837447.jpg", "description": "International conference on sustainable governance"},
+    {"name": "netherlands0.mp4", "path": "myvideos/netherlands0.mp4", "thumbnail": "myimages/ChatGPT Image Apr 23, 2026, 09_30_32 PM.png", "description": "Panel discussion on corporate accountability"},
+    {"name": "Netherlands2.mp4", "path": "myvideos/Netherlands2.mp4", "thumbnail": "myimages/1718182828074.jpg", "description": "Expert insights on ESG frameworks and implementation"},
+    {"name": "Netherlands3.mp4", "path": "myvideos/Netherlands3.mp4", "thumbnail": "myimages/1746735839120.jpg", "description": "Board-level perspectives on responsible AI"},
+    {"name": "Netherlands4.mp4", "path": "myvideos/Netherlands4.mp4", "thumbnail": "myimages/1727961231064.jpg", "description": "Roundtable discussion on governance trends"}
   ]
 }

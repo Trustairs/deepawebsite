@@ -1327,96 +1327,8 @@
     <p class="rv d2">Short-form expert videos on ESG governance, sustainability reporting, AI ethics, and board oversight — distilled into accessible, actionable content for leaders.</p>
   </div>
 
-  <div class="vid-grid">
-    <div class="vid-card rv">
-      <div class="vid-thumb">
-        <div class="vid-thumb-inner">
-          <img src="myimages/1747045242628.jpg" alt="Video 1">
-          <div class="vid-play"></div>
-        </div>
-        <div class="vid-tag">ESG</div>
-      </div>
-      <div class="vid-body">
-        <div class="vid-duration">Coming Soon</div>
-        <div class="vid-title">What Boards Need to Know About CSRD in 2026</div>
-        <div class="vid-desc">A concise breakdown of the Corporate Sustainability Reporting Directive — what's changed, who's affected, and what boards must do now.</div>
-      </div>
-    </div>
-
-    <div class="vid-card rv d1">
-      <div class="vid-thumb">
-        <div class="vid-thumb-inner">
-          <img src="myimages/1746735837447.jpg" alt="Video 2">
-          <div class="vid-play"></div>
-        </div>
-        <div class="vid-tag">AI Governance</div>
-      </div>
-      <div class="vid-body">
-        <div class="vid-duration">Coming Soon</div>
-        <div class="vid-title">The AIRS Framework Explained</div>
-        <div class="vid-desc">Deepa walks through the four pillars of her proprietary AI Governance in Reporting framework — Accountability, Integrity, Responsibility, Sustainability.</div>
-      </div>
-    </div>
-
-    <div class="vid-card rv d2">
-      <div class="vid-thumb">
-        <div class="vid-thumb-inner">
-          <img src="myimages/ChatGPT%20Image%20Apr%2023%2C%202026%2C%2009_30_32%20PM.png" alt="Video 3">
-          <div class="vid-play"></div>
-        </div>
-        <div class="vid-tag">Governance</div>
-      </div>
-      <div class="vid-body">
-        <div class="vid-duration">Coming Soon</div>
-        <div class="vid-title">The TRUST Framework: Board-Level ESG Oversight</div>
-        <div class="vid-desc">A masterclass on governing sustainability reporting from the boardroom — the five pillars every audit committee needs to understand.</div>
-      </div>
-    </div>
-
-    <div class="vid-card rv d1">
-      <div class="vid-thumb">
-        <div class="vid-thumb-inner">
-          <img src="myimages/1718182828074.jpg" alt="Video 4">
-          <div class="vid-play"></div>
-        </div>
-        <div class="vid-tag">Reporting</div>
-      </div>
-      <div class="vid-body">
-        <div class="vid-duration">Coming Soon</div>
-        <div class="vid-title">Greenwashing: How to Spot It &amp; How to Avoid It</div>
-        <div class="vid-desc">From vague claims to missing data — a practical guide to identifying greenwashing risks in your own disclosures before your auditors do.</div>
-      </div>
-    </div>
-
-    <div class="vid-card rv d2">
-      <div class="vid-thumb">
-        <div class="vid-thumb-inner">
-          <img src="myimages/1746735839120.jpg" alt="Video 5">
-          <div class="vid-play"></div>
-        </div>
-        <div class="vid-tag">Strategy</div>
-      </div>
-      <div class="vid-body">
-        <div class="vid-duration">Coming Soon</div>
-        <div class="vid-title">ESG Data Management: From Chaos to Clarity</div>
-        <div class="vid-desc">How to build comprehensive ESG data systems that survive regulatory scrutiny — the architecture, governance, and tools that work.</div>
-      </div>
-    </div>
-
-    <div class="vid-card rv d3">
-      <div class="vid-thumb">
-        <div class="vid-thumb-inner">
-          <img src="myimages/1727961231064.jpg" alt="Video 6">
-          <div class="vid-play"></div>
-        </div>
-        <div class="vid-tag">Leadership</div>
-      </div>
-      <div class="vid-body">
-        <div class="vid-duration">Coming Soon</div>
-        <div class="vid-title">Internal Audit's Role in Sustainability Assurance</div>
-        <div class="vid-desc">Why internal audit is the unsung hero of credible ESG reporting — and how to position your audit function at the heart of sustainability governance.</div>
-      </div>
-    </div>
+  <div class="vid-grid" id="vid-grid">
+    <!-- Videos will be loaded here -->
   </div>
 </div>
 
@@ -1837,6 +1749,35 @@
       alert(`"${title}"\n\nThis video will be available soon. Subscribe to the newsletter for updates.`);
     });
   });
+
+  /* ── Load videos from media.json ───────────── */
+  fetch('media.json')
+    .then(response => response.json())
+    .then(data => {
+      const vidGrid = document.getElementById('vid-grid');
+      const videos = data.videos;
+      const tags = ['ESG', 'AI Governance', 'Governance', 'Reporting', 'Strategy', 'Leadership'];
+      videos.forEach((video, index) => {
+        const vidCard = document.createElement('div');
+        vidCard.className = `vid-card rv d${index % 4}`;
+        vidCard.innerHTML = `
+          <div class="vid-thumb">
+            <div class="vid-thumb-inner">
+              <img src="${video.thumbnail}" alt="Video ${index + 1}">
+              <div class="vid-play"></div>
+            </div>
+            <div class="vid-tag">${tags[index % tags.length]}</div>
+          </div>
+          <div class="vid-body">
+            <div class="vid-duration">Coming Soon</div>
+            <div class="vid-title">${video.name.replace('.mp4', '').replace(/([A-Z])/g, ' $1').trim()}</div>
+            <div class="vid-desc">${video.description}</div>
+          </div>
+        `;
+        vidGrid.appendChild(vidCard);
+      });
+    })
+    .catch(error => console.error('Error loading media.json:', error));
 
 })();
 </script>
