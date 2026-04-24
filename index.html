@@ -543,6 +543,13 @@
     .vid-card:hover .vid-title { color:var(--gold); }
     .vid-desc { font-size:12.5px; color:rgba(255,255,255,.44); line-height:1.72; }
 
+    /* ── Video Modal ───────────────────────────────────── */
+    #vid-modal { position:fixed; inset:0; z-index:9999; display:flex; align-items:center; justify-content:center; }
+    .vid-modal-backdrop { position:absolute; inset:0; background:rgba(0,0,0,.85); }
+    .vid-modal-box { position:relative; width:min(90vw,960px); z-index:1; }
+    .vid-modal-box video { width:100%; border-radius:8px; display:block; }
+    .vid-modal-close { position:absolute; top:-40px; right:0; background:none; border:none; color:#fff; font-size:2rem; cursor:pointer; line-height:1; padding:4px 8px; }
+
     /* ══════════════════════════════════════════════════════ */
     /* PODCASTS & WEBINARS                                    */
     /* ══════════════════════════════════════════════════════ */
@@ -1729,14 +1736,6 @@
     });
   });
 
-  /* ── Video card placeholder click ───────────── */
-  document.querySelectorAll('.vid-card').forEach(card=>{
-    card.addEventListener('click',()=>{
-      const title=card.querySelector('.vid-title').textContent;
-      alert(`"${title}"\n\nThis video will be available soon. Subscribe to the newsletter for updates.`);
-    });
-  });
-
   /* ── Load videos from media.json ───────────── */
   fetch('media.json')
     .then(response => response.json())
@@ -1745,6 +1744,19 @@
       if(!vidGrid || !data.videos) return;
       const videos = data.videos;
       const tags = ['ESG', 'AI Governance', 'Governance', 'Reporting', 'Strategy', 'Leadership'];
+      const vidModal = document.getElementById('vid-modal');
+      const vidPlayer = document.getElementById('vid-modal-player');
+
+      function closeVidModal() {
+        vidPlayer.pause();
+        vidPlayer.src = '';
+        vidModal.style.display = 'none';
+      }
+
+      document.querySelector('.vid-modal-backdrop').addEventListener('click', closeVidModal);
+      document.querySelector('.vid-modal-close').addEventListener('click', closeVidModal);
+      document.addEventListener('keydown', e => { if(e.key==='Escape') closeVidModal(); });
+
       videos.forEach((video, index) => {
         const vidCard = document.createElement('div');
         vidCard.className = `vid-card rv d${index % 4}`;
@@ -1757,11 +1769,17 @@
             <div class="vid-tag">${tags[index % tags.length]}</div>
           </div>
           <div class="vid-body">
-            <div class="vid-duration">Coming Soon</div>
+            <div class="vid-duration">Watch now</div>
             <div class="vid-title">${video.name.replace('.mp4', '').replace(/([A-Z])/g, ' $1').trim()}</div>
             <div class="vid-desc">${video.description || ''}</div>
           </div>
         `;
+        vidCard.addEventListener('click', () => {
+          vidPlayer.src = video.path;
+          vidPlayer.load();
+          vidPlayer.play();
+          vidModal.style.display = 'flex';
+        });
         vidGrid.appendChild(vidCard);
         rvObs.observe(vidCard);
       });
@@ -1781,5 +1799,13 @@
 
 })();
 </script>
+
+<div id="vid-modal" style="display:none;">
+  <div class="vid-modal-backdrop"></div>
+  <div class="vid-modal-box">
+    <button class="vid-modal-close">&times;</button>
+    <video id="vid-modal-player" controls playsinline></video>
+  </div>
+</div>
 </body>
 </html>
