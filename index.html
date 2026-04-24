@@ -699,35 +699,21 @@
     .footer-links a:hover { color:var(--gold); }
     .footer-copy { font-size:11px; color:rgba(255,255,255,.22); }
 
-    /* ── Keyframes ─────────────────────────────────────────── */
-    @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
-    @keyframes fadeIn { to { opacity:1; } }
-    @keyframes pulse { 0%,100%{opacity:.4;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.15)} }
-    @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-    @keyframes statusPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.4)} }
-    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+    /* ── Cookie Banner ─────────────────────────────────────── */
+    .cookie-banner {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--navy-card); border-top: 1px solid var(--border);
+      padding: 20px 72px; z-index: 10000;
+      transform: translateY(100%); transition: transform .6s var(--ease);
+    }
+    .cookie-banner.show { transform: translateY(0); }
+    .cookie-content { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin: 0 auto; gap: 24px; }
+    .cookie-content p { font-size: 12px; color: var(--muted); margin: 0; line-height: 1.5; }
+    .cookie-content a { color: var(--gold); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .3s; }
+    .cookie-content a:hover { border-color: var(--gold); }
+    .cookie-btn { padding: 10px 24px; min-width: 120px; justify-content: center; cursor: pointer; }
 
-    /* ── Responsive ────────────────────────────────────────── */
-    @media(max-width:1000px){
-      nav {
-        padding:22px 28px;
-        flex-wrap:wrap;
-        align-items:center;
-        gap:18px;
-      }
-      nav.solid { padding:14px 28px; }
-      .nav-links {
-        display:flex;
-        flex-wrap:wrap;
-        gap:16px;
-        justify-content:flex-start;
-        overflow-x:auto;
-        padding-bottom:8px;
-      }
-      .nav-links::-webkit-scrollbar { display:none; }
-      .nav-links a { white-space:nowrap; }
-      .nav-btn { display:inline-flex; }
-      #hero { grid-template-columns:1fr; padding:100px 28px 60px; }
+    /* ── o { grid-template-columns:1fr; padding:100px 28px 60px; }
       .hero-visual { display:none; }
       .hero-content { padding-top:0; }
       .hero-name { font-size:clamp(48px,8vw,92px); margin:22px 0 16px; }
@@ -750,7 +736,7 @@
       footer { flex-direction:column; gap:20px; text-align:center; padding:36px 28px; }
       .footer-links { justify-content:center; }
       .speaking-top,.courses-header { flex-direction:column; gap:24px; align-items:flex-start; }
-      .contact-btns { flex-direction:column; align-items:center; }
+      .contact-btns { :8px;
     }
     @media(max-width:720px){
       nav { padding:18px 20px; align-items:flex-start; gap:16px; }
@@ -765,8 +751,7 @@
         overflow:hidden;
         opacity:0;
         transition:max-height .35s ease, opacity .35s ease;
-      }
-      .nav-links.open {
+      }av-links.open {
         max-height:500px;
         opacity:1;
       }
@@ -788,7 +773,7 @@
       .contact-btns { width:100%; }
       .c-btn { width:100%; justify-content:center; }
       footer { padding:28px 20px; }
-    }
+        gap:1
     @media(max-width:560px){
       body { font-size:14px; }
       .section-wrap { padding:52px 18px; }
@@ -803,8 +788,7 @@
       .pw-card-top { padding:24px 20px 20px; }
       .fw-card { padding:32px 24px; }
       .course-top { padding:32px 24px 24px; }
-      .contact-h { font-size:clamp(38px,8vw,60px); }
-      footer { gap:16px; }
+      .ooter { gap:16px; }
     }
   </style>
 </head>
@@ -1643,8 +1627,8 @@
     <a href="https://deeparao.uk/" target="_blank">deeparao.uk</a>
   </div>
   <div class="footer-copy">© 2026 Deepa Rao · Sustainability, Governance &amp; AI</div>
-</footer>
-
+</foot class="contact-su
+  
 <!-- ══════════════════════════════════════════════════════ -->
 <!-- SCRIPTS                                                -->
 <!-- ══════════════════════════════════════════════════════ -->
@@ -1655,20 +1639,12 @@
   let mx=0,my=0,rx=0,ry=0;
   document.addEventListener('mousemove',e=>{
     mx=e.clientX; my=e.clientY;
-    dot.style.left=mx+'px'; dot.style.top=my+'px';
-  });
-  (function raf(){
+    dot.eft=mx+'px'; dot.style.top=my+'px';
+; (function raf(){
     rx+=(mx-rx)*.11; ry+=(my-ry)*.11;
     ring.style.left=rx+'px'; ring.style.top=ry+'px';
-    requestAnimationFrame(raf);
-  })();
-  document.querySelectorAll('a,button,.spk-card,.exp-card,.co-pill,.imp-cell,.vid-card,.pw-card,.course-card,.fw-card,.nl-article').forEach(el=>{
-    el.addEventListener('mouseenter',()=>ring.classList.add('hov'));
-    el.addEventListener('mouseleave',()=>ring.classList.remove('hov'));
-  });
-
-  /* ── Scroll Progress ────────────────────────── */
-  const prog=document.getElementById('prog');
+    reec
+─  const prog=document.getElementById('prog');
   window.addEventListener('scroll',()=>{
     const s=document.documentElement.scrollTop;
     const h=document.documentElement.scrollHeight-window.innerHeight;
@@ -1776,8 +1752,8 @@
         `;
         vidGrid.appendChild(vidCard);
       });
-    })
-    .catch(error => console.error('Error loading media.json:', error));
+     );
+  });
 
 })();
 </script>
