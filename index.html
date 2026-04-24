@@ -736,7 +736,7 @@
       footer { flex-direction:column; gap:20px; text-align:center; padding:36px 28px; }
       .footer-links { justify-content:center; }
       .speaking-top,.courses-header { flex-direction:column; gap:24px; align-items:flex-start; }
-      .contact-btns { :8px;
+      .contact-btns { gap: 16px; }
     }
     @media(max-width:720px){
       nav { padding:18px 20px; align-items:flex-start; gap:16px; }
@@ -773,11 +773,11 @@
       .contact-btns { width:100%; }
       .c-btn { width:100%; justify-content:center; }
       footer { padding:28px 20px; }
-        gap:1
+    }
     @media(max-width:560px){
       body { font-size:14px; }
       .section-wrap { padding:52px 18px; }
-      .nav-links { justify-content:flex-start; }
+      .nav-links { justify-content:center; }
       .hero-name { font-size:clamp(34px,12vw,62px); }
       .hero-desc { font-size:13.5px; line-height:1.9; }
       .label, .nav-links a, .btn-gold, .btn-outline, .btn-ghost, .course-meta span, .nl-art-date, .nl-art-title, .vid-duration, .vid-desc, .pw-ep, .pw-link, .footer-links a { font-size:10px; }
@@ -786,9 +786,8 @@
       .spk-overlay { padding:24px 20px 18px; }
       .vid-body { padding:18px 20px 22px; }
       .pw-card-top { padding:24px 20px 20px; }
-      .fw-card { padding:32px 24px; }
       .course-top { padding:32px 24px 24px; }
-      .ooter { gap:16px; }
+      footer { gap:16px; }
     }
   </style>
 </head>
@@ -1624,10 +1623,18 @@
     <a href="#podcasts">Podcasts</a>
     <a href="#courses">Courses</a>
     <a href="#contact">Contact</a>
+    <a href="privacy.html">Privacy Policy</a>
     <a href="https://deeparao.uk/" target="_blank">deeparao.uk</a>
   </div>
   <div class="footer-copy">© 2026 Deepa Rao · Sustainability, Governance &amp; AI</div>
-</foot class="contact-su
+</footer>
+
+<div id="cookieBanner" class="cookie-banner">
+  <div class="cookie-content">
+    <p>We use cookies to ensure you get the best experience on our website. By continuing to browse, you agree to our use of cookies and our <a href="privacy.html">Privacy Policy</a>.</p>
+    <button id="acceptCookies" class="btn-gold cookie-btn"><span>Accept</span></button>
+  </div>
+</div>
   
 <!-- ══════════════════════════════════════════════════════ -->
 <!-- SCRIPTS                                                -->
@@ -1639,12 +1646,16 @@
   let mx=0,my=0,rx=0,ry=0;
   document.addEventListener('mousemove',e=>{
     mx=e.clientX; my=e.clientY;
-    dot.eft=mx+'px'; dot.style.top=my+'px';
-; (function raf(){
+    dot.style.left=mx+'px'; dot.style.top=my+'px';
+  });
+  (function raf(){
     rx+=(mx-rx)*.11; ry+=(my-ry)*.11;
     ring.style.left=rx+'px'; ring.style.top=ry+'px';
-    reec
-─  const prog=document.getElementById('prog');
+    requestAnimationFrame(raf);
+  })();
+
+  /* ── Progress Bar ──────────────────────────── */
+  const prog=document.getElementById('prog');
   window.addEventListener('scroll',()=>{
     const s=document.documentElement.scrollTop;
     const h=document.documentElement.scrollHeight-window.innerHeight;
@@ -1731,6 +1742,7 @@
     .then(response => response.json())
     .then(data => {
       const vidGrid = document.getElementById('vid-grid');
+      if(!vidGrid || !data.videos) return;
       const videos = data.videos;
       const tags = ['ESG', 'AI Governance', 'Governance', 'Reporting', 'Strategy', 'Leadership'];
       videos.forEach((video, index) => {
@@ -1739,7 +1751,7 @@
         vidCard.innerHTML = `
           <div class="vid-thumb">
             <div class="vid-thumb-inner">
-              <img src="${video.thumbnail}" alt="Video ${index + 1}">
+              <img src="${video.thumbnail || ''}" alt="${video.name}">
               <div class="vid-play"></div>
             </div>
             <div class="vid-tag">${tags[index % tags.length]}</div>
@@ -1747,13 +1759,25 @@
           <div class="vid-body">
             <div class="vid-duration">Coming Soon</div>
             <div class="vid-title">${video.name.replace('.mp4', '').replace(/([A-Z])/g, ' $1').trim()}</div>
-            <div class="vid-desc">${video.description}</div>
+            <div class="vid-desc">${video.description || ''}</div>
           </div>
         `;
         vidGrid.appendChild(vidCard);
+        rvObs.observe(vidCard);
       });
-     );
-  });
+    })
+    .catch(error => console.warn('Note: media.json not found or empty.'));
+
+  /* ── Cookie Consent ─────────────────────────── */
+  const cb = document.getElementById('cookieBanner');
+  const ca = document.getElementById('acceptCookies');
+  if (cb && ca && !localStorage.getItem('cookies-accepted')) {
+    setTimeout(() => cb.classList.add('show'), 2500);
+    ca.addEventListener('click', () => {
+      localStorage.setItem('cookies-accepted', 'true');
+      cb.classList.remove('show');
+    });
+  }
 
 })();
 </script>
