@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRUST & AIRS Frameworks — Deepa Rao</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Reusing Styles from index.html for consistency */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --navy: #04080f; --navy-mid: #070d1a; --navy-light: #0b1525; --navy-card: #091120;
+      --gold: #c9a028; --gold-lt: #e2bb48; --white: #ffffff; --muted: rgba(255,255,255,.52);
+      --border: rgba(201,160,40,.18); --bdim: rgba(255,255,255,.07); --ease: cubic-bezier(.76,0,.24,1);
+    }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { background: var(--navy); color: var(--white); font-family: 'Inter', sans-serif; font-weight:300; line-height:1.7; cursor:none; -webkit-font-smoothing:antialiased; }
+    
+    .cur-dot { width:7px; height:7px; background:var(--gold); border-radius:50%; position:fixed; top:0; left:0; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); }
+    .cur-ring { width:34px; height:34px; border:1px solid rgba(201,160,40,.5); border-radius:50%; position:fixed; top:0; left:0; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition: width .35s var(--ease), height .35s var(--ease); }
+    #prog { position:fixed; top:0; left:0; right:0; height:1.5px; background:linear-gradient(90deg,var(--gold),var(--gold-lt)); transform-origin:left; transform:scaleX(0); z-index:9997; }
+    .grain { position:fixed; inset:-100%; width:300%; height:300%; opacity:.025; pointer-events:none; z-index:9995; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); animation:grain .4s steps(1) infinite; }
+    @keyframes grain { 0%{transform:translate(0,0)} 25%{transform:translate(-3%,2%)} 50%{transform:translate(2%,-3%)} 75%{transform:translate(-2%,3%)} 100%{transform:translate(0,0)} }
+
+    nav { position:fixed; top:0; left:0; right:0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:30px 72px; border-bottom:1px solid transparent; transition: all .5s var(--ease); }
+    nav.solid { padding:16px 72px; background:rgba(4,8,15,.9); backdrop-filter:blur(24px); border-color:var(--bdim); }
+    .nav-logo { font-family:'Cinzel',serif; font-size:17px; letter-spacing:.18em; color:var(--gold); text-decoration:none; }
+    .nav-links { display:flex; gap:36px; list-style:none; }
+    .nav-links a { color:rgba(255,255,255,.6); text-decoration:none; font-size:11px; letter-spacing:.13em; text-transform:uppercase; transition:color .3s; }
+    .nav-links a:hover { color:var(--gold); }
+
+    .hero-sub { padding:180px 72px 100px; text-align:center; position:relative; }
+    .label { font-size:10px; letter-spacing:.32em; text-transform:uppercase; color:var(--gold); display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom:24px; }
+    .label::before, .label::after { content:''; width:28px; height:1px; background:var(--gold); }
+    .h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(48px,6vw,92px); font-weight:300; line-height:1.05; margin-bottom:32px; }
+    .h1 i { font-style:italic; color:var(--gold); }
+    .hero-lead { font-size:18px; color:var(--muted); max-width:700px; margin:0 auto; line-height:1.8; }
+
+    .section-wrap { padding:100px 72px; }
+    .fw-grid-detailed { display:grid; grid-template-columns:1fr 1fr; gap:60px; margin-top:60px; }
+    .fw-card-big { border:1px solid var(--border); padding:60px; background:var(--navy-mid); position:relative; overflow:hidden; }
+    .fw-code-bg { font-family:'Cinzel',serif; font-size:140px; color:rgba(201,160,40,.03); position:absolute; top:-20px; right:-10px; pointer-events:none; }
+    .fw-title-big { font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:300; margin-bottom:10px; }
+    .fw-sub-big { font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:40px; display:block; }
+    
+    .pillar-list { display:flex; flex-direction:column; gap:32px; }
+    .pillar-item { display:flex; gap:24px; }
+    .pillar-letter { font-family:'Cinzel',serif; font-size:24px; color:var(--gold); flex-shrink:0; border:1px solid var(--border); width:50px; height:50px; display:flex; align-items:center; justify-content:center; }
+    .pillar-content h4 { font-size:16px; margin-bottom:8px; font-weight:500; }
+    .pillar-content p { font-size:14px; color:var(--muted); line-height:1.6; }
+
+    .method-box { margin-top:120px; border-top:1px solid var(--bdim); padding-top:80px; }
+    .method-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:40px; margin-top:50px; }
+    .method-card { padding:30px; border:1px solid var(--bdim); transition: border-color .4s; }
+    .method-card:hover { border-color: var(--gold); }
+    .method-card h3 { font-family:'Cormorant Garamond',serif; font-size:24px; margin-bottom:16px; font-weight:400; }
+    
+    .rv { opacity:0; transform:translateY(30px); transition:all .8s var(--ease); }
+    .rv.show { opacity:1; transform:translateY(0); }
+
+    footer { padding:44px 72px; border-top:1px solid var(--bdim); display:flex; justify-content:space-between; align-items:center; margin-top:100px; }
+    .footer-links { display:flex; gap:28px; }
+    .footer-links a { font-size:10.5px; color:rgba(255,255,255,.32); text-decoration:none; transition:color .3s; }
+    .footer-links a:hover { color:var(--gold); }
+
+    @media(max-width:1024px) {
+      .fw-grid-detailed, .method-grid { grid-template-columns:1fr; }
+      .section-wrap, nav, footer { padding:40px 24px; }
+      .hero-sub { padding:140px 24px 60px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="cur-dot" id="curDot"></div>
+  <div class="cur-ring" id="curRing"></div>
+  <div id="prog"></div>
+
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">DR</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#frameworks">Frameworks</a></li>
+      <li><a href="index.html#speaking">Speaking</a></li>
+      <li><a href="index.html#insights">Insights</a></li>
+    </ul>
+    <a href="index.html#contact" style="border:1px solid var(--gold); color:var(--gold); padding:10px 24px; text-decoration:none; font-size:10px; letter-spacing:.1em; text-transform:uppercase;">Connect</a>
+  </nav>
+
+  <header class="hero-sub">
+    <div class="label rv">Governance Methodologies</div>
+    <h1 class="h1 rv">Trust in <i>Sustainability</i><br>Accountability in <i>AI</i></h1>
+    <p class="hero-lead rv">The TRUST and AIRS frameworks provide the structural rigor required to navigate the transition to a regulated, AI-driven corporate landscape.</p>
+  </header>
+
+  <section class="section-wrap">
+    <div class="fw-grid-detailed">
+      <!-- TRUST Details -->
+      <div class="fw-card-big rv">
+        <div class="fw-code-bg">TRUST</div>
+        <span class="fw-sub-big">The TRUST Framework</span>
+        <h2 class="fw-title-big">Sustainability Governance</h2>
+        <div class="pillar-list">
+          <div class="pillar-item">
+            <div class="pillar-letter">T</div>
+            <div class="pillar-content">
+              <h4>Transparency</h4>
+              <p>Establishing verifiable data lineages from source to disclosure, ensuring stakeholders can interrogate the origin of ESG metrics.</p>
+            </div>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-letter">R</div>
+            <div class="pillar-content">
+              <h4>Responsibility</h4>
+              <p>Mapping clear lines of ownership across the organization, ensuring the Board and Executive teams are accountable for reporting outcomes.</p>
+            </div>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-letter">U</div>
+            <div class="pillar-content">
+              <h4>Understanding</h4>
+              <p>Bridging the literacy gap in the boardroom, empowering leaders to interpret complex sustainability data and ESG risks.</p>
+            </div>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-letter">S</div>
+            <div class="pillar-content">
+              <h4>Security & Sustainability</h4>
+              <p>Protecting data integrity through robust internal controls and systems that meet the requirements of CSRD and ESRS.</p>
+            </div>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-letter">T</div>
+            <div class="pillar-content">
+              <h4>Trustworthiness</h4>
+              <p>Preparing for limited and reasonable assurance through independent validation and audit-ready reporting practices.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AIRS Details -->
+      <div class="fw-card-big rv" style="transition-delay: .2s;">
+        <div class="fw-code-bg">AIRS</div>
+        <span class="fw-sub-big">The AIRS Framework</span>
+        <h2 class="fw-title-big">AI Oversight in Reporting</h2>
+        <div class="pillar-list">
+          <div class="pillar-item">
+            <div class="pillar-letter">A</div>
+            <div class="pillar-content">
+              <h4>Accountability</h4>
+              <p>Assigning human responsibility for AI-generated insights, ensuring that automated processes do not bypass human oversight.</p>
+            </div>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-letter">I</div>
+            <div class="pillar-content">
+              <h4>Integrity</h4>
+              <p>Validating the accuracy of AI models used in financial and sustainability reporting to prevent hallucinations and bias.</p>
+            </div>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-letter">R</div>
+            <div class="pillar-content">
+              <h4>Responsibility</h4>
+              <p>Upholding ethical standards in AI deployment, aligning with the EU AI Act and global governance standards.</p>
+            </div>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-letter">S</div>
+            <div class="pillar-content">
+              <h4>Sustainability</h4>
+              <p>Ensuring AI systems are documented and traceable, allowing for long-term auditability in a changing regulatory environment.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="method-box">
+      <div class="label rv">Implementation</div>
+      <h2 class="h1 rv" style="font-size: 42px;">How we <i>embed</i> the frameworks</h2>
+      <div class="method-grid">
+        <div class="method-card rv">
+          <h3>1. Diagnostic Assessment</h3>
+          <p style="color:var(--muted); font-size:14px;">We begin by evaluating your current reporting maturity against the TRUST or AIRS pillars to identify critical gaps and opportunities.</p>
+        </div>
+        <div class="method-card rv" style="transition-delay: .1s;">
+          <h3>2. Strategic Design</h3>
+          <p style="color:var(--muted); font-size:14px;">Customizing the framework to align with your specific industry, regulatory requirements (CSRD, GRI, SEC), and internal data structures.</p>
+        </div>
+        <div class="method-card rv" style="transition-delay: .2s;">
+          <h3>3. Operational Rollout</h3>
+          <p style="color:var(--muted); font-size:14px;">Embedding governance into your workflows, training teams, and implementing the control environments necessary for audit-readiness.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Deepa Rao</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="https://deeparao.uk/" target="_blank">deeparao.uk</a>
+    </div>
+    <div class="footer-copy">© 2026 Deepa Rao</div>
+  </footer>
+
+  <script>
+    (function(){
+      const dot=document.getElementById('curDot'), ring=document.getElementById('curRing');
+      let mx=0,my=0,rx=0,ry=0;
+      document.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY; dot.style.left=mx+'px'; dot.style.top=my+'px'; });
+      (function raf(){ rx+=(mx-rx)*.11; ry+=(my-ry)*.11; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(raf); })();
+
+      const prog=document.getElementById('prog');
+      window.addEventListener('scroll',()=>{
+        const s=document.documentElement.scrollTop, h=document.documentElement.scrollHeight-window.innerHeight;
+        prog.style.transform=`scaleX(${s/h})`;
+      },{passive:true});
+
+      const nav=document.getElementById('nav');
+      window.addEventListener('scroll',()=>nav.classList.toggle('solid',window.scrollY>80),{passive:true});
+
+      const rvObs=new IntersectionObserver(entries=>{
+        entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); rvObs.unobserve(e.target); } });
+      },{threshold:.1});
+      document.querySelectorAll('.rv').forEach(el=>rvObs.observe(el));
+    })();
+  </script>
+</body>
+</html>
