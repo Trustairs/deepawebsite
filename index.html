@@ -163,11 +163,6 @@ h2{font-size:clamp(2.1rem,4.2vw,3.3rem);font-weight:300;max-width:20ch}
 .art--lead{grid-row:span 3;border-top:1px solid var(--ink)}
 .art--lead h4{font-size:clamp(1.8rem,3vw,2.5rem);font-weight:300;line-height:1.12;margin-bottom:14px}
 .art--lead p{font-size:1.08rem}
-.concepts{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--ink)}
-.concept{padding:28px 40px 0 0}
-.concept+.concept{padding:28px 0 0 40px;border-left:1px solid var(--line)}
-.concept h4{font-size:1.6rem;font-weight:300;margin-bottom:10px}
-.concept p{color:var(--mute);margin:0}
 .ledger{margin:36px 0 0;font-size:.92rem;color:var(--mute);max-width:80ch;padding-left:16px;border-left:2px solid var(--brass)}
 
 /* ---------- papers ---------- */
@@ -347,8 +342,6 @@ footer{background:var(--dark);color:var(--dark-mute);border-top:1px solid var(--
   .wrap,.hero__grid{padding-left:20px;padding-right:20px}
   .fw__one{grid-template-columns:1fr}
   .fw__one .plate{max-width:220px}
-  .concepts{grid-template-columns:1fr}
-  .concept+.concept{padding:28px 0 0;border-left:0;margin-top:28px;border-top:1px solid var(--line)}
   .stats dt{font-size:2.2rem}
   .proof li{grid-template-columns:1fr;gap:2px}
   form.cf{grid-template-columns:1fr}.field.full,.ok{grid-column:auto}
@@ -488,7 +481,7 @@ footer{background:var(--dark);color:var(--dark-mute);border-top:1px solid var(--
   </div>
 </section>
 
-<!-- NEWSLETTER + CONCEPTS -->
+<!-- NEWSLETTER -->
 <section class="sec" id="writing">
   <div class="wrap">
     <div class="nl">
@@ -510,19 +503,6 @@ footer{background:var(--dark);color:var(--dark-mute);border-top:1px solid var(--
       </ol>
     </div>
 
-    <div class="sechead">
-      <div><p class="kicker">Concepts</p><h3>Insights, disclosed</h3></div>
-    </div>
-    <div class="concepts">
-      <div class="concept">
-        <h4>The AI Influence Indicator</h4>
-        <p>A disclosure-level tag stating how much of a report was AI-assisted — meta-transparency applied to reporting itself, ahead of ISSA 5000 assurance expectations.</p>
-      </div>
-      <div class="concept">
-        <h4>Chief AI Assurance Officer</h4>
-        <p>The case for a named executive accountable for every AI system touching a material disclosure — from IFRS S1/S2 metrics to narrative reporting.</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -613,7 +593,7 @@ footer{background:var(--dark);color:var(--dark-mute);border-top:1px solid var(--
       <h2>Let's talk governance.</h2>
       <p class="lead">Board advisory, keynote speaking, framework collaboration, or early application of TRUST<sup class="m">™</sup> + AIRS<sup class="m">®</sup>.</p>
       <ul>
-        <li><a href="https://calendly.com/" target="_blank" rel="noopener">Book a board conversation</a></li>
+        <li><a href="https://calendly.com/" target="_blank" rel="noopener">Book a conversation</a></li>
         <li><a href="https://www.linkedin.com/in/deepa-rao-38468523" target="_blank" rel="noopener">LinkedIn</a></li>
         <li><a href="https://www.linkedin.com/newsletters/nothing-to-hide-7441589259091873793/" target="_blank" rel="noopener">Nothing to Hide — Newsletter</a></li>
       </ul>
@@ -777,10 +757,11 @@ footer{background:var(--dark);color:var(--dark-mute);border-top:1px solid var(--
   /* ---------- Mind-it ---------- */
   var TOPICS=['Board Governance – AI','Sustainability & Board','AI Impacts','Sustainability','Assurance'];
   var SEED=[
-    {id:'s1',name:'Deepa Rao',topic:'Board Governance – AI',text:'Every board pack should state which numbers were touched by a model. Not a policy — a column in the pack.'},
-    {id:'s2',name:'Deepa Rao',topic:'Assurance',text:'ISSA 5000 readiness starts with a systems inventory, not a gap analysis. You cannot assure what you have not listed.'},
-    {id:'s3',name:'Deepa Rao',topic:'AI Impacts',text:'The first AI-driven restatement will do more for governance budgets than a decade of frameworks.'},
-    {id:'s4',name:'Deepa Rao',topic:'Board Governance – AI',text:'Directors do not need to code. They need to ask: who owns this model, when was it last tested, what changed since we signed?'}
+    {id:'q1',name:'Louis D. Brandeis',topic:'Assurance',text:'“Sunlight is said to be the best of disinfectants; electric light the most efficient policeman.”'},
+    {id:'q2',name:'George E. P. Box',topic:'AI Impacts',text:'“All models are wrong, but some are useful.”'},
+    {id:'q3',name:'Warren Buffett',topic:'Sustainability & Board',text:'“It takes 20 years to build a reputation and five minutes to ruin it. If you think about that, you’ll do things differently.”'},
+    {id:'q4',name:'Upton Sinclair',topic:'Board Governance – AI',text:'“It is difficult to get a man to understand something, when his salary depends upon his not understanding it.”'},
+    {id:'q5',name:'Goodhart’s law, as put by Marilyn Strathern',topic:'Sustainability',text:'“When a measure becomes a target, it ceases to be a good measure.”'}
   ];
   var KEY='dr-mindit-v2',RE=[['up','👍'],['idea','💡'],['fire','🔥'],['heart','❤️']];
   var state=store.get(KEY,{mine:[],re:{}}),filter='All';
